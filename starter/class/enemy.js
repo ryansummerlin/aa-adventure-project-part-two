@@ -2,8 +2,10 @@ const {Character} = require('./character');
 
 
 class Enemy extends Character {
-  constructor(name, description, currentRoom) {
-    // Fill this in
+  constructor(name, description, currentRoom, cooldown = 3000) {
+    super(name, description, currentRoom);
+    this.cooldown = cooldown;
+    this.attackTarget = null;
   }
 
   setPlayer(player) {
@@ -12,7 +14,11 @@ class Enemy extends Character {
 
 
   randomMove() {
-    // Fill this in
+    let random = Math.floor(Math.random(this.currentRoom.getExits().length));
+    let exits = this.currentRoom.getExits();
+    let newRoomIndex = exits[random];
+    this.currentRoom = this.currentRoom.getRoomInDirection(newRoomIndex);
+    this.cooldown += 3000;
   }
 
   takeSandwich() {
@@ -36,11 +42,16 @@ class Enemy extends Character {
   }
 
   attack() {
-    // Fill this in
+    this.attackTarget.applyDamage(this.strength);
+    console.log(`${attackTarget.name}'s health is at ${attackTarget.health}`)
+    this.cooldown += 3000;
   }
 
   applyDamage(amount) {
-    // Fill this in
+    this.health -= amount;
+    if (this.health <= 0) {
+      this.die();
+    }
   }
 
 
@@ -50,21 +61,22 @@ class Enemy extends Character {
       // Dead, do nothing;
     } else if (this.cooldown > 0) {
       this.rest();
+    } else if (this.attackTarget) {
+      this.attack();
     } else {
       this.scratchNose();
       this.rest();
     }
-
-    // Fill this in
   }
 
 
   scratchNose() {
-    this.cooldown += 1000;
+    this.cooldown += 3000;
 
     this.alert(`${this.name} scratches its nose`);
 
   }
+
 
 
 }
