@@ -33,28 +33,29 @@ class Enemy extends Character {
   }
 
   rest() {
+    let player = this;
     // Wait until cooldown expires, then act
     const resetCooldown = function() {
-      this.cooldown = 0;
-      this.act();
+      player.cooldown = 0;
+      player.act();
     };
-    setTimeout(resetCooldown, this.cooldown);
+    setTimeout(resetCooldown, player.cooldown);
   }
 
   attack() {
     this.attackTarget.applyDamage(this.strength);
-    console.log(`${attackTarget.name}'s health is at ${attackTarget.health}`)
+    console.log(`${this.attackTarget.name}'s health is at ${this.attackTarget.health}`)
     this.cooldown += 3000;
+    this.act();
   }
 
   applyDamage(amount) {
     this.health -= amount;
     if (this.health <= 0) {
       this.die();
+      console.log(`The ${this.name} died!`);
     }
   }
-
-
 
   act() {
     if (this.health <= 0) {

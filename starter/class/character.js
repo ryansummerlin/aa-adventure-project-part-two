@@ -7,10 +7,11 @@ class Character {
     this.items = [];
     this.strength = 10;
     this.health = 100;
+    this.armor = 0;
   }
 
   applyDamage(amount) {
-    this.health -= amount;
+    this.health -= (amount - this.armor);
     if (this.health <= 0) {
       this.die();
     }

@@ -42,6 +42,20 @@ module.exports = {
       description: "A tasty looking sandwich",
       room: 2,
       isFood: true
+    },
+    {
+      name: "battle-axe",
+      description: "A hefty axe",
+      room: 2,
+      damage: 15,
+      isWeapon: true
+    },
+    {
+      name: "battle-armor",
+      description: "A gleaming set of steel armor",
+      room: 4,
+      protection: 5,
+      isArmor: true
     }
   ],
   enemies: [
