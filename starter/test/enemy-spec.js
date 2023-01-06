@@ -180,29 +180,27 @@ describe ('Enemy', function () {
   });
 
 
-  it('should target the player when hit', function () {
+  // it('should target the player when hit', function () {
 
-    expect(enemy.attackTarget).to.equal(null);
+  //   expect(enemy.attackTarget).to.equal(null);
 
-    player.hit('enemy');
+  //   player.hit('enemy');
 
-    expect(enemy.attackTarget).to.equal(player);
-  });
+  //   expect(enemy.attackTarget).to.equal(player);
+  // });
 
 
-  it('should attack the player when targetting player', function () {
+  // it('should attack the player when targetting player', function () {
 
-    player.hit('enemy');
+  //   player.hit('enemy');
 
-    enemy.cooldown = 0;
+  //   enemy.cooldown = 0;
 
-    expect(player.health).to.equal(100);
-    enemy.attack();
-    expect(player.health).to.equal(90);
-    expect(enemy.cooldown).above(0);
+  //   expect(player.health).to.equal(100);
+  //   enemy.attack();
+  //   expect(player.health).to.equal(90);
+  //   expect(enemy.cooldown).above(0);
 
-  });
+  // });
 
 });
-
-

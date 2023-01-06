@@ -15,7 +15,12 @@ class Player extends Character {
     const nextRoom = this.currentRoom.getRoomInDirection(direction);
 
     // If the next room is valid, set the player to be in that room
-    if (nextRoom) {
+    if (nextRoom instanceof DarkRoom && this.items.some(el => el instanceof Light)) {
+      this.currentRoom = nextRoom;
+
+      nextRoom.super.printRoom(this);
+    }
+    else if (nextRoom) {
       this.currentRoom = nextRoom;
 
       nextRoom.printRoom(this);
